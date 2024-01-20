@@ -132,89 +132,92 @@ class _SpeedTestState extends State<SpeedTest> {
             const SizedBox(
               height: 40,
             ),
-            SfRadialGauge(
-              axes: <RadialAxis>[
-                RadialAxis(
-                  radiusFactor: 0.85,
-                  minorTicksPerInterval: 1,
-                  useRangeColorForAxis: true,
-                  interval: 5,
-                  minimum: 0,
-                  maximum: 100,
-                  showTicks: false,
-                  axisLineStyle: const AxisLineStyle(
-                    thickness: 0.1,
-                    thicknessUnit: GaugeSizeUnit.factor,
-                    gradient: SweepGradient(colors: <Color>[
-                      Color.fromARGB(79, 255, 118, 118),
-                      Color.fromARGB(101, 161, 131, 22)
-                    ], stops: <double>[
-                      0.25,
-                      0.75
-                    ]),
-                  ),
-                  showLastLabel: true,
-                  axisLabelStyle: const GaugeTextStyle(color: Colors.white),
-                  ranges: [
-                    GaugeRange(
-                      //color: const Color.fromARGB(255, 24, 163, 201),
-                      startValue: 0,
-                      endValue: 99,
-                      startWidth: 10,
-                      endWidth: 10,
+            Expanded(
+              flex: 6,
+              child: SfRadialGauge(
+                axes: <RadialAxis>[
+                  RadialAxis(
+                    radiusFactor: 0.85,
+                    minorTicksPerInterval: 1,
+                    useRangeColorForAxis: true,
+                    interval: 5,
+                    minimum: 0,
+                    maximum: 100,
+                    showTicks: false,
+                    axisLineStyle: const AxisLineStyle(
+                      thickness: 0.1,
+                      thicknessUnit: GaugeSizeUnit.factor,
+                      gradient: SweepGradient(colors: <Color>[
+                        Color.fromARGB(79, 255, 118, 118),
+                        Color.fromARGB(101, 161, 131, 22)
+                      ], stops: <double>[
+                        0.25,
+                        0.75
+                      ]),
                     ),
-                  ],
-                  pointers: [
-                    NeedlePointer(
-                      value: displayRate,
-                      needleStartWidth: 0,
-                      needleEndWidth: 5,
-                      enableAnimation: true,
-                      needleColor: Colors.orange,
-                      tailStyle: const TailStyle(
-                        color: Colors.white,
-                        borderWidth: 0.1,
-                        borderColor: Colors.blue,
+                    showLastLabel: true,
+                    axisLabelStyle: const GaugeTextStyle(color: Colors.white),
+                    ranges: [
+                      GaugeRange(
+                        //color: const Color.fromARGB(255, 24, 163, 201),
+                        startValue: 0,
+                        endValue: 99,
+                        startWidth: 10,
+                        endWidth: 10,
                       ),
-                      knobStyle: const KnobStyle(
-                        color: Colors.white,
-                        borderColor: Color.fromARGB(255, 56, 184, 167),
-                        borderWidth: 0.04,
-                        knobRadius: 0.06,
-                      ),
-                    ),
-                    RangePointer(
-                        sizeUnit: GaugeSizeUnit.logicalPixel,
+                    ],
+                    pointers: [
+                      NeedlePointer(
                         value: displayRate,
-                        gradient: const SweepGradient(colors: <Color>[
-                          Color.fromARGB(255, 224, 66, 66),
-                          Color.fromARGB(255, 173, 19, 91)
-                        ], stops: <double>[
-                          0.25,
-                          0.80
-                        ]),
-                        width: 10,
+                        needleStartWidth: 0,
+                        needleEndWidth: 5,
                         enableAnimation: true,
-                        color: Colors.orange)
-                  ],
-                  annotations: [
-                    GaugeAnnotation(
-                      widget: SizedBox(
-                        child: Text(
-                          '${displayRate.toStringAsFixed(2)} $unitTest',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
+                        needleColor: Colors.orange,
+                        tailStyle: const TailStyle(
+                          color: Colors.white,
+                          borderWidth: 0.1,
+                          borderColor: Colors.blue,
+                        ),
+                        knobStyle: const KnobStyle(
+                          color: Colors.white,
+                          borderColor: Color.fromARGB(255, 56, 184, 167),
+                          borderWidth: 0.04,
+                          knobRadius: 0.06,
                         ),
                       ),
-                      angle: 90,
-                      positionFactor: 0.9,
-                    )
-                  ],
-                )
-              ],
+                      RangePointer(
+                          sizeUnit: GaugeSizeUnit.logicalPixel,
+                          value: displayRate,
+                          gradient: const SweepGradient(colors: <Color>[
+                            Color.fromARGB(255, 224, 66, 66),
+                            Color.fromARGB(255, 173, 19, 91)
+                          ], stops: <double>[
+                            0.25,
+                            0.80
+                          ]),
+                          width: 10,
+                          enableAnimation: true,
+                          color: Colors.orange)
+                    ],
+                    annotations: [
+                      GaugeAnnotation(
+                        widget: SizedBox(
+                          child: Text(
+                            '${displayRate.toStringAsFixed(2)} $unitTest',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
+                        angle: 90,
+                        positionFactor: 0.9,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
             const SizedBox(
               height: 30,
@@ -229,26 +232,28 @@ class _SpeedTestState extends State<SpeedTest> {
                   fontSize: 18),
             ),
             const SizedBox(
-              height: 60,
+              height: 50,
             ),
-            ElevatedButton(
-              autofocus: true,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(232, 209, 140, 13),
-              ),
-              onPressed: () {
-                testingfunction();
-              },
-              child: const SizedBox(
-                height: 100,
-                width: 50,
-                child: Center(
-                  child: Text(
-                    'Go',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 110, 6, 55),
+            Expanded(
+              child: ElevatedButton(
+                autofocus: true,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(232, 209, 140, 13),
+                ),
+                onPressed: () {
+                  testingfunction();
+                },
+                child: const SizedBox(
+                  //height: 100,
+                  width: 50,
+                  child: Center(
+                    child: Text(
+                      'Go',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 110, 6, 55),
+                      ),
                     ),
                   ),
                 ),
